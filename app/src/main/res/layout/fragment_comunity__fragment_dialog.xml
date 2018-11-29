@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Comunities.Comunity_FragmentDialog"
+
+    >
+
+
+    <ImageView
+        android:id="@+id/imgcomunity"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
+
+        />
+
+    <TextView
+        android:id="@+id/title_Comunity"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="120dp"
+        android:text="@string/coordinator"
+
+        />
+
+    <TextView
+        android:id="@+id/name_comunity"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginStart="120dp"
+        android:text="@string/title"
+
+        />
+    <TextView
+        android:id="@+id/title_topic"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="120dp"
+        android:layout_below="@+id/name_comunity"
+        android:layout_marginTop="10dp"
+        android:text="@string/topic"
+        />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerViewComunity"
+            android:layout_width="match_parent"
+            android:layout_height="140dp"
+            android:scrollbars="horizontal"
+            android:layout_below="@+id/imgcomunity" />
+
+    <TextView
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:text="@string/description"
+        android:layout_marginTop="300dp"
+        android:layout_marginStart="10dp"
+        android:id="@+id/description"
+        />
+
+    <TextView
+        android:id="@+id/text_desc"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_below="@+id/description"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="0dp"
+
+        android:text="@string/textComunity" />
+
+</RelativeLayout>

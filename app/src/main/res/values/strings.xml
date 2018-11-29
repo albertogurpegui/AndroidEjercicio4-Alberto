@@ -1,0 +1,66 @@
+<resources>
+    <!--App Name-->
+    <string name="app_name">U-TAD APP</string>
+    <!--Login Section Start-->
+    <string name="email_hint">Email</string>
+    <string name="pass_hint">Password</string>
+    <string name="btn_login_text">Login</string>
+    <!--Login Section End-->
+    <!--Form Data Section Start-->
+    <string name="name">Name</string>
+    <string name="surname1">Surname</string>
+    <string name="surname2">Surname 2</string>
+    <string name="birthday">Birthday</string>
+    <string name="address">Address</string>
+    <string name="postalCode">Postal Code</string>
+    <string name="city">City</string>
+    <string name="phone">Phone</string>
+    <string-array name="array_phone">
+        <item>Phone</item>
+        <item>Home</item>
+        <item>Office</item>
+    </string-array>
+    <!--Form Data Section End-->
+    <!--Navigation Drawer Section Start-->
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="description">Description</string>
+    <string name="text">Short description</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="classes">Classes</string>
+    <string name="notifications">Notifications</string>
+    <string name="qualificatios">Qualificatios</string>
+    <string name="professors">Professors</string>
+    <string name="comunities">Communities</string>
+    <string name="log_out">Log Out</string>
+    <string name="textCourse">Course description</string>
+    <string name="namedata">Name</string>
+    <string name="year">Year</string>
+    <string name="textComunity">Comunity description</string>
+    <string name="coordinator">Coordinator</string>
+    <string name="topic">Topic</string>
+    <string name="title">Title</string>
+    <!--General Course NavHeader Start-->
+    <string name="gc_tvt_hint_User">StudentName</string>
+    <string name="gc_tvt_hint_Surname">StudentSurname</string>
+    <string name="gc_tvt_hint_Email">StudentSurname</string>
+    <!--General Course NavHeader End-->
+
+    <string name="textClass">Class Description</string>
+    <string name="textprofessor">Professor Description</string>
+    <string name="namePersonalData">Name</string>
+    <string name="surnamePersonalData">Surname</string>
+    <string name="text_descriptionPersonaldata">Text Description</string>
+    <string name="genderPersonalData">Gender</string>
+    <string name="malePerosnalData">Male</string>
+    <string name="femalePersonalData">Female</string>
+    <string name="hobbiesPersonalData">Hobbies</string>
+    <string name="cinemaPersonalData">Cinema</string>
+    <string name="walkPerosnaldata">Walk</string>
+    <string name="play_musicPersonalData">Play Music</string>
+    <string name="item1RecycleView">Item1</string>
+    <string name="item2RecyclerView">Item2</string>
+    <string name="item3RecyclerView">Item3</string>
+    <string name="item4RecyclerData">Item4</string>
+    <string name="surnameJaime">La torre</string>
+</resources>

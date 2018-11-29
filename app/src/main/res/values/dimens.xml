@@ -1,0 +1,39 @@
+<resources>
+    <dimen name="fab_margin">16dp</dimen>
+    <!--Intructions
+    All dimens for any Layout start With (Fist Letter of Activity)+(Margin/Height/Width,etc)+Element
+    L = Login, FD = FormData ,etc
+    M = Margin, W = Width, H = Height
+    ML = MarginLeft
+    MR = MarginRight
+    MB = MarginBottom
+    MS = MarginStart
+    MT = MarginTop
+    ME = MarginEnd-->
+    <!--Login Section Start-->
+    <!--Linear Layout Start-->
+    <dimen name="w_LinearLayout">247dp</dimen>
+    <dimen name="h_LinearLayout">87dp</dimen>
+    <dimen name="ms_LinearLayout">62dp</dimen>
+    <dimen name="mt_LinearLayout">50dp</dimen>
+    <dimen name="me_LinearLayout">75dp</dimen>
+    <dimen name="mb_LinearLayout">120dp</dimen>
+    <!--Linear Layout End-->
+    <!--TextInputLayout Start-->
+    <dimen name="mt_InputLayout">10dp</dimen>
+    <!--TextInputLayout End-->
+    <!--ImageView Section Start-->
+    <dimen name="h_ImageView">103dp</dimen>
+    <dimen name="ms_ImageView">125dp</dimen>
+    <dimen name="mt_ImageView">30dp</dimen>
+    <dimen name="me_ImageView">142dp</dimen>
+    <dimen name="mb_ImageView">27dp</dimen>
+    <!--ImageView Section End-->
+    <!--Button Login Section Start-->
+    <dimen name="w_btnLogin">250dp</dimen>
+    <dimen name="ms_btnLogin">50dp</dimen>
+    <dimen name="me_btnLogin">50dp</dimen>
+    <dimen name="mb_btnLogin">30dp</dimen>
+    <!--Button Login Section End-->
+    <!--Login Section End-->
+</resources>

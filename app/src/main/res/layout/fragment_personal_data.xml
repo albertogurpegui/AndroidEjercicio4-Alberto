@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="430dp"
+        android:layout_above="@+id/fabtnOK"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="30dp"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="20dp"
+                android:orientation="horizontal">
+
+                <com.mikhaellopez.circularimageview.CircularImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="76dp"
+                    android:layout_height="76dp"
+                    android:layout_margin="5dp"
+                    app:civ_border="false"
+                    android:src="@drawable/u_logo"
+                    android:background="@drawable/radius_logo"/>
+
+
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textViewN"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:layout_weight="1"
+                        android:text="@string/namePersonalData"
+                        android:textColor="@android:color/black" />
+
+                    <TextView
+                        android:id="@+id/textViewS"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:layout_weight="1"
+                        android:text="@string/surnamePersonalData"
+                        android:textColor="@android:color/black" />
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/tilDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="75dp"
+                app:errorEnabled="false">
+
+                <EditText
+                    android:id="@+id/etDescripccion"
+                    android:layout_width="320dp"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="textCapSentences|textMultiLine|textCapWords|textPersonName"
+                    android:hint="@string/text_descriptionPersonaldata" />
+            </android.support.design.widget.TextInputLayout>
+
+            <TextView
+                android:id="@+id/gender"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
+                android:text="@string/genderPersonalData"
+                android:textColor="@android:color/black" />
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/tilGender"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:errorEnabled="false">
+
+                <RadioGroup
+                    android:id="@+id/radiogroup"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/radio_boys"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/malePerosnalData" />
+
+                    <RadioButton
+                        android:id="@+id/radio_girls"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/femalePersonalData" />
+                </RadioGroup>
+            </android.support.design.widget.TextInputLayout>
+
+            <TextView
+                android:id="@+id/hobbies"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="@string/hobbiesPersonalData"
+                android:textColor="@android:color/black" />
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/tilHobbies"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:helperTextEnabled="false">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="20dp"
+                    android:orientation="vertical">
+
+
+                    <CheckBox
+                        android:id="@+id/ch_cinema"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/cinemaPersonalData" />
+
+                    <CheckBox
+                        android:id="@+id/ch_walk"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/walkPerosnaldata" />
+
+                    <CheckBox
+                        android:id="@+id/ch_play_music"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/play_musicPersonalData" />
+                </LinearLayout>
+            </android.support.design.widget.TextInputLayout>
+        </LinearLayout>
+    </ScrollView>
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fabtnOK"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="45dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/circle_button"
+        android:backgroundTint="@color/button_text"
+        android:src="@drawable/fba_ok"
+         />
+
+
+
+</RelativeLayout>

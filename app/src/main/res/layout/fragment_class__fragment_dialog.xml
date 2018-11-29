@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Comunities.Comunity_FragmentDialog"
+
+    >
+
+
+    <ImageView
+        android:id="@+id/img_class"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
+
+        />
+
+    <TextView
+        android:id="@+id/name_class"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="120dp"
+        android:text="Name"
+
+        />
+
+    <TextView
+        android:id="@+id/year_class"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="120dp"
+        android:layout_below="@+id/name_class"
+        android:layout_marginTop="20dp"
+        android:text="Year"
+        />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerViewClass"
+            android:layout_width="match_parent"
+            android:layout_height="140dp"
+            android:scrollbars="horizontal"
+            android:layout_below="@+id/img_class" />
+    <TextView
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:text="@string/description"
+        android:layout_marginTop="300dp"
+        android:layout_marginStart="10dp"
+        android:id="@+id/description"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/description"
+        android:text="@string/textClass"
+        android:id="@+id/text_desc"
+        android:layout_marginStart="10dp"
+
+        />
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/my_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom|end"
+        android:layout_marginStart="323dp"
+        android:layout_marginTop="486dp"
+        android:layout_marginEnd="21dp"
+        android:layout_marginBottom="41dp"
+        android:onClick="onclick"
+        android:src="@drawable/email_name" />
+</RelativeLayout>
