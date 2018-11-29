@@ -8,12 +8,14 @@ import android.widget.TextView;
 
 import com.example.albertoguerpegui.task4_alberto.R;
 
+import java.util.List;
+
 
 public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapter.NotificationViewHolder> {
 
-    private NotificationObject[] mDataset;
+    private List<NotificationObject> mDataset;
 
-    public NotificationAdapter(NotificationObject[] myDataset) {
+    public NotificationAdapter(List<NotificationObject> myDataset) {
         this.mDataset = myDataset;
     }
 
@@ -25,7 +27,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
 
     @Override
     public void onBindViewHolder(NotificationViewHolder notesViewHolder, final int i) {
-        final NotificationObject item = mDataset[i];
+        final NotificationObject item = mDataset.get(i);
         notesViewHolder.date.setText(item.getDate());
         notesViewHolder.name.setText(item.getName());
         notesViewHolder.title.setText(item.getTitle());
@@ -33,7 +35,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
 
     @Override
     public int getItemCount() {
-        return mDataset.length;
+        return mDataset.size();
     }
 
     public class NotificationViewHolder extends RecyclerView.ViewHolder {
