@@ -26,11 +26,11 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
     }
 
     @Override
-    public void onBindViewHolder(NotificationViewHolder notesViewHolder, final int i) {
+    public void onBindViewHolder(NotificationViewHolder notificationViewHolder, final int i) {
         final NotificationObject item = mDataset.get(i);
-        notesViewHolder.date.setText(item.getDate());
-        notesViewHolder.name.setText(item.getName());
-        notesViewHolder.title.setText(item.getTitle());
+        notificationViewHolder.date.setText(item.getDate());
+        notificationViewHolder.name.setText(item.getName());
+        notificationViewHolder.title.setText(item.getTitle());
     }
 
     @Override
@@ -43,12 +43,14 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
         public TextView date;
         public TextView name;
         public TextView title;
+        public TextView text;
 
         public NotificationViewHolder(View v) {
             super(v);
             title = v.findViewById(R.id.item4);
             name = v.findViewById(R.id.item2);
             date = v.findViewById(R.id.item3);
+            text = v.findViewById(R.id.item1);
         }
     }
 }

@@ -1,12 +1,25 @@
 package com.example.albertoguerpegui.task4_alberto.Lessons.FragmentLessons;
 
+import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 
+@Entity(tableName = "Lesson")
 public class ClassObject implements Parcelable {
+    @PrimaryKey(autoGenerate = true)
+    @NonNull
+    @ColumnInfo(name = "id")
+    private int id;
+    @ColumnInfo(name = "nameclass")
     private String nameclass;
+    @ColumnInfo(name = "imgclass")
     private int imgclass;
+    @ColumnInfo(name = "course")
     private String course;
+    @ColumnInfo(name = "textDescriptionClass")
     private String textDescriptionClass;
 
 
@@ -36,6 +49,7 @@ public class ClassObject implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id);
         dest.writeString(nameclass);
         dest.writeInt(imgclass);
         dest.writeString(course);
@@ -58,6 +72,15 @@ public class ClassObject implements Parcelable {
             return new ClassObject[size];
         }
     };
+
+    @NonNull
+    public int getId() {
+        return id;
+    }
+
+    public void setId(@NonNull int id) {
+        this.id = id;
+    }
 
     public String getNameclass() {
         return nameclass;

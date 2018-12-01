@@ -55,7 +55,7 @@ public class ClassAdapter extends RecyclerView.Adapter<ClassAdapter.ClassViewHol
         return mDataset.size();
     }
 
-    static class ClassViewHolder extends RecyclerView.ViewHolder {
+    public static class ClassViewHolder extends RecyclerView.ViewHolder {
 
         public TextView textView;
         public ImageView imageView;

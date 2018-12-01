@@ -8,50 +8,51 @@ import android.widget.TextView;
 
 import com.example.albertoguerpegui.task4_alberto.R;
 
-public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NotificationViewHolder> {
+import java.util.List;
 
-    private NoteObject[] mDataset;
 
-    public NoteAdapter(NoteObject[] myDataset) {
+public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder> {
+
+    private List<NoteObject> mDataset;
+
+    public NoteAdapter(List<NoteObject> myDataset) {
         this.mDataset = myDataset;
     }
 
     @Override
-    public NotificationViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+    public NoteViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View rootView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.list_recyclerview, viewGroup, false);
-        return new NotificationViewHolder(rootView);
+        return new NoteViewHolder(rootView);
     }
 
     @Override
-    public void onBindViewHolder(NotificationViewHolder notesViewHolder, final int i) {
-        final NoteObject item = mDataset[i];
+    public void onBindViewHolder(NoteViewHolder notesViewHolder, final int i) {
+        final NoteObject item = mDataset.get(i);
         notesViewHolder.date.setText(item.getDate());
-        notesViewHolder.classes.setText(item.getClasses());
-        notesViewHolder.exercise.setText(item.getExercise());
-        if (notesViewHolder.note.getText()!=null){
-            notesViewHolder.note.setVisibility(View.VISIBLE);
-            notesViewHolder.note.setText(item.getNotes());
-        }
+        notesViewHolder.clases.setText(item.getClasses());
+        notesViewHolder.title.setText(item.getExercise());
+        notesViewHolder.note.setText(item.getNotes());
     }
 
     @Override
     public int getItemCount() {
-        return mDataset.length;
+        return mDataset.size();
     }
 
-    public class NotificationViewHolder extends RecyclerView.ViewHolder {
+    public class NoteViewHolder extends RecyclerView.ViewHolder {
 
         public TextView date;
-        public TextView classes;
+        public TextView clases;
+        public TextView title;
         public TextView note;
-        public TextView exercise;
 
-        public NotificationViewHolder(View v) {
+        public NoteViewHolder(View v) {
             super(v);
-            note = v.findViewById(R.id.item1);
-            classes = v.findViewById(R.id.item2);
+            title = v.findViewById(R.id.item4);
+            clases = v.findViewById(R.id.item2);
             date = v.findViewById(R.id.item3);
-            exercise = v.findViewById(R.id.item4);
+            note = v.findViewById(R.id.item1);
+            note.setVisibility(View.VISIBLE);
         }
     }
 }

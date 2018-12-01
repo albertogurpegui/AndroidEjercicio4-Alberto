@@ -1,12 +1,25 @@
 package com.example.albertoguerpegui.task4_alberto.Notes;
 
+import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 
+@Entity(tableName = "Note")
 public class NoteObject implements Parcelable {
+    @PrimaryKey(autoGenerate = true)
+    @NonNull
+    @ColumnInfo(name = "id")
+    private int id;
+    @ColumnInfo(name = "date")
     private String date;
+    @ColumnInfo(name = "classes")
     private String classes;
+    @ColumnInfo(name = "notes")
     private String notes;
+    @ColumnInfo(name = "exercise")
     private String exercise;
 
     public NoteObject(String date, String classes, String notes, String exercise) {
@@ -17,6 +30,7 @@ public class NoteObject implements Parcelable {
     }
 
     protected NoteObject(Parcel in) {
+        id = in.readInt();
         date = in.readString();
         classes = in.readString();
         notes = in.readString();
@@ -42,10 +56,20 @@ public class NoteObject implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id);
         dest.writeString(date);
         dest.writeString(classes);
         dest.writeString(notes);
         dest.writeString(exercise);
+    }
+
+    @NonNull
+    public int getId() {
+        return id;
+    }
+
+    public void setId(@NonNull int id) {
+        this.id = id;
     }
 
     public String getDate() {

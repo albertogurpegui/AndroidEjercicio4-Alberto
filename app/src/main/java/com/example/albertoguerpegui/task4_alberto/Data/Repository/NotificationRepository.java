@@ -2,7 +2,6 @@ package com.example.albertoguerpegui.task4_alberto.Data.Repository;
 
 import android.app.Application;
 import android.arch.lifecycle.LiveData;
-import android.os.AsyncTask;
 
 import com.example.albertoguerpegui.task4_alberto.Data.BBDD.UTADBBDD;
 import com.example.albertoguerpegui.task4_alberto.Data.DAO.NotificationDAO;
@@ -16,10 +15,10 @@ public class NotificationRepository {
 
     public NotificationRepository(Application application) {
         UTADBBDD db = UTADBBDD.getDatabase(application);
-        notificationDAO = db.classdao();
+        notificationDAO = db.notificationdao();
         mAllNotification = notificationDAO.getAllNotification();
     }
-    LiveData<List<NotificationObject>> getAllClass() {
+    LiveData<List<NotificationObject>> getAllNotification() {
         return mAllNotification;
     }
 }
