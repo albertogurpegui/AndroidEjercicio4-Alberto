@@ -1,12 +1,15 @@
 package com.example.albertoguerpegui.task4_alberto.General_Course;
 
 import android.app.Activity;
+import android.arch.lifecycle.Observer;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -22,6 +25,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.albertoguerpegui.task4_alberto.Comunities.FragmentComunity.ComunityFragment;
+import com.example.albertoguerpegui.task4_alberto.Data.BBDD.UTADBBDD;
+import com.example.albertoguerpegui.task4_alberto.Data.DAO.UserDAO;
+import com.example.albertoguerpegui.task4_alberto.Data.Repository.UserRepository;
+import com.example.albertoguerpegui.task4_alberto.FormData.FormsActivity;
 import com.example.albertoguerpegui.task4_alberto.Lessons.FragmentLessons.ClassFragment;
 import com.example.albertoguerpegui.task4_alberto.Login.Login;
 import com.example.albertoguerpegui.task4_alberto.Notifications.NotificationFragment;
@@ -37,6 +44,8 @@ public class General_Course extends AppCompatActivity implements NavigationView.
     public static final String USER = "USER";
     private static User user;
     private String mUri, sUserName, sSurname, sEmail;
+    private TextView mName, mSurname, mEmail;
+    private  ImageView mImageView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,10 +58,10 @@ public class General_Course extends AppCompatActivity implements NavigationView.
         LayoutInflater.from(getBaseContext()).inflate(R.layout.activity_general_course_navheader, navigationView);
 
         navigationView.setNavigationItemSelectedListener(this);
-        ImageView mImageView = navigationView.findViewById(R.id.imageViewU);
-        TextView mName = navigationView.findViewById(R.id.tvtUserName);
-        TextView mSurname = navigationView.findViewById(R.id.tvtUserSurname);
-        TextView mEmail = navigationView.findViewById(R.id.tvtEmail);
+        mImageView = navigationView.findViewById(R.id.imageViewU);
+        mName = navigationView.findViewById(R.id.tvtUserName);
+        mSurname = navigationView.findViewById(R.id.tvtUserSurname);
+        mEmail = navigationView.findViewById(R.id.tvtEmail);
         setTitle("Classes");
         Fragment fragment = new ClassFragment();
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
@@ -67,8 +76,20 @@ public class General_Course extends AppCompatActivity implements NavigationView.
         // use a linear layout manager
         mLayoutManager = new GridLayoutManager(this, 2);
         mRecyclerView.setLayoutManager(mLayoutManager);*/
-
-
+        UserRepository userRepository = new UserRepository(getApplication());
+        userRepository.mUser.observe(this, new Observer<User>() {
+            @Override
+            public void onChanged(@Nullable User user) {
+                if(user!=null){
+                    mUri = user.getUrl();
+                    sEmail = user.getEmail();
+                    sUserName = user.getName();
+                    sSurname = user.getSurname();
+                    putInfo();
+                }
+            }
+        });
+/*
         user = new User();
        Intent intent_receive = this.getIntent();
         if(intent_receive != null){
@@ -79,10 +100,21 @@ public class General_Course extends AppCompatActivity implements NavigationView.
              sSurname = user.getSurname();
 
         }
+        */
 
-            mName.setText(sUserName);
-            mSurname.setText(sSurname);
-            mEmail.setText(sEmail);
+
+
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+
+    }
+
+    public void putInfo(){
+        mName.setText(sUserName);
+        mSurname.setText(sSurname);
+        mEmail.setText(sEmail);
 
         try {
 
@@ -99,12 +131,6 @@ public class General_Course extends AppCompatActivity implements NavigationView.
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
-
     }
 
     @Override
@@ -132,6 +158,7 @@ public class General_Course extends AppCompatActivity implements NavigationView.
         int id = item.getItemId();
 
         if (id == R.id.action_settings) {
+
             return true;
         }
 
@@ -183,10 +210,24 @@ public class General_Course extends AppCompatActivity implements NavigationView.
 
 
     public void onclicklogout(MenuItem item) {
-
-        Intent navigate = new Intent(General_Course.this, Login.class);
+        (new General_Course.LogOutAsyncTask(UTADBBDD.INSTANCE)).execute();
+        Intent navigate = new Intent(getApplicationContext(), Login.class);
         navigate.setFlags(navigate.FLAG_ACTIVITY_NEW_TASK | navigate.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(navigate);
         finish();
+    }
+
+    private static class LogOutAsyncTask extends AsyncTask<Void,Void,Void> {
+        public UserDAO userDAO;
+
+        public LogOutAsyncTask(UTADBBDD utadbbdd) {
+            userDAO = utadbbdd.userdao();
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            userDAO.deleteAll();
+            return null;
+        }
     }
 }

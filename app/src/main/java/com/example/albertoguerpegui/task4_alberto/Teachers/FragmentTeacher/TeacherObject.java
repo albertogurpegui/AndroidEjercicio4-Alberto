@@ -1,34 +1,27 @@
 package com.example.albertoguerpegui.task4_alberto.Teachers.FragmentTeacher;
 
+import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 
+@Entity(tableName = "Teacher")
 public class TeacherObject implements Parcelable {
+    @PrimaryKey(autoGenerate = true)
+    @NonNull
+    @ColumnInfo(name = "id")
+    private int id;
+    @ColumnInfo(name = "nameprofessor")
     private String nameprofessor;
+    @ColumnInfo(name = "imgprofessor")
     private int imgprofessor;
+    @ColumnInfo(name = "surnameprofessor")
     private String surnameprofessor;
+    @ColumnInfo(name = "textDescProfessor")
     private String textDescProfessor;
 
-    public String getTextDescProfessor() {
-        return textDescProfessor;
-    }
-
-    public void setTextDescProfessor(String textDescProfessor) {
-        this.textDescProfessor = textDescProfessor;
-    }
-
-
-
-    public String getSurnameprofessor() {
-        return surnameprofessor;
-    }
-
-    public void setSurnameprofessor(String surnameprofessor) {
-        this.surnameprofessor = surnameprofessor;
-    }
-
-    public TeacherObject() {
-    }
 
     public TeacherObject(String nameprofessor, int imgprofessor, String surnameprofessor, String textDescProfessor) {
         this.nameprofessor = nameprofessor;
@@ -38,6 +31,7 @@ public class TeacherObject implements Parcelable {
     }
 
     public TeacherObject(Parcel in) {
+        id = in.readInt();
         nameprofessor = in.readString();
         imgprofessor = in.readInt();
         surnameprofessor = in.readString();
@@ -46,6 +40,7 @@ public class TeacherObject implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id);
         dest.writeString(nameprofessor);
         dest.writeInt(imgprofessor);
         dest.writeString(surnameprofessor);
@@ -69,6 +64,15 @@ public class TeacherObject implements Parcelable {
         }
     };
 
+    @NonNull
+    public int getId() {
+        return id;
+    }
+
+    public void setId(@NonNull int id) {
+        this.id = id;
+    }
+
     public String getNameprofessor() {
         return nameprofessor;
     }
@@ -81,7 +85,23 @@ public class TeacherObject implements Parcelable {
         return imgprofessor;
     }
 
-    public void setImgprofessor(int imgclass) {
+    public void setImgprofessor(int imgprofessor) {
         this.imgprofessor = imgprofessor;
+    }
+
+    public String getSurnameprofessor() {
+        return surnameprofessor;
+    }
+
+    public void setSurnameprofessor(String surnameprofessor) {
+        this.surnameprofessor = surnameprofessor;
+    }
+
+    public String getTextDescProfessor() {
+        return textDescProfessor;
+    }
+
+    public void setTextDescProfessor(String textDescProfessor) {
+        this.textDescProfessor = textDescProfessor;
     }
 }

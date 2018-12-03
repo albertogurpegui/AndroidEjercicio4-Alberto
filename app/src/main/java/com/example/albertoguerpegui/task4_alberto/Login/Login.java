@@ -1,8 +1,10 @@
 package com.example.albertoguerpegui.task4_alberto.Login;
 
 
+import android.arch.lifecycle.Observer;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
@@ -11,7 +13,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.albertoguerpegui.task4_alberto.Data.Repository.UserRepository;
 import com.example.albertoguerpegui.task4_alberto.FormData.FormsActivity;
+import com.example.albertoguerpegui.task4_alberto.General_Course.General_Course;
 import com.example.albertoguerpegui.task4_alberto.R;
 import com.example.albertoguerpegui.task4_alberto.User;
 
@@ -36,6 +40,17 @@ public class Login extends AppCompatActivity {
         mTilEmail = findViewById(R.id.tilEmail);
         mTilPass = findViewById(R.id.tilPass);
         checkButon();
+
+        UserRepository userRepository = new UserRepository(getApplication());
+        userRepository.mUser.observe(this, new Observer<User>() {
+            @Override
+            public void onChanged(@Nullable User user) {
+                if (user != null){
+                    Intent saveIntent = new Intent(getApplicationContext(), General_Course.class);
+                    startActivity(saveIntent);
+                }
+            }
+        });
 
     }
 

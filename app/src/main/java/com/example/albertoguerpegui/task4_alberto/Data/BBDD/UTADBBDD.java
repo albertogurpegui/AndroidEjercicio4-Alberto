@@ -8,24 +8,33 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 
+import com.example.albertoguerpegui.task4_alberto.Comunities.FragmentComunity.ComunityObject;
+import com.example.albertoguerpegui.task4_alberto.Data.DAO.ComunityDAO;
 import com.example.albertoguerpegui.task4_alberto.Data.DAO.LessonDAO;
 import com.example.albertoguerpegui.task4_alberto.Data.DAO.NoteDAO;
 import com.example.albertoguerpegui.task4_alberto.Data.DAO.NotificationDAO;
+import com.example.albertoguerpegui.task4_alberto.Data.DAO.TeacherDAO;
+import com.example.albertoguerpegui.task4_alberto.Data.DAO.UserDAO;
 import com.example.albertoguerpegui.task4_alberto.Lessons.FragmentLessons.ClassObject;
 import com.example.albertoguerpegui.task4_alberto.Notes.NoteObject;
 import com.example.albertoguerpegui.task4_alberto.Notifications.NotificationObject;
 import com.example.albertoguerpegui.task4_alberto.R;
+import com.example.albertoguerpegui.task4_alberto.Teachers.FragmentTeacher.TeacherObject;
+import com.example.albertoguerpegui.task4_alberto.User;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Database(entities = {NotificationObject.class, NoteObject.class, ClassObject.class}, version = 3)
+@Database(entities = {NotificationObject.class, NoteObject.class, ClassObject.class, TeacherObject.class, ComunityObject.class, User.class}, version = 6)
 public abstract class UTADBBDD extends RoomDatabase {
 
     public abstract NotificationDAO notificationdao();
     public abstract NoteDAO notedao();
     public abstract LessonDAO lessondao();
-    private static UTADBBDD INSTANCE;
+    public abstract TeacherDAO teacherdao();
+    public abstract ComunityDAO comunitydao();
+    public abstract UserDAO userdao();
+    public static UTADBBDD INSTANCE;
 
     public static UTADBBDD getDatabase(final Context context) {
         if (INSTANCE == null) {
@@ -40,6 +49,8 @@ public abstract class UTADBBDD extends RoomDatabase {
                             .addCallback(callBackDataNotification)
                             .addCallback(callBackDataNotes)
                             .addCallback(callBackDataLessons)
+                            .addCallback(callBackDataTeachers)
+                            .addCallback(callBackDataComunities)
                             .build();
                 }
             }
@@ -67,7 +78,23 @@ public abstract class UTADBBDD extends RoomDatabase {
         @Override
         public void onOpen(@NonNull SupportSQLiteDatabase db) {
             super.onOpen(db);
-            (new NoteAsyncTask(INSTANCE)).execute();
+            (new LessonAsyncTask(INSTANCE)).execute();
+        }
+    };
+
+    static Callback callBackDataTeachers = new Callback() {
+        @Override
+        public void onOpen(@NonNull SupportSQLiteDatabase db) {
+            super.onOpen(db);
+            (new TeacherAsyncTask(INSTANCE)).execute();
+        }
+    };
+
+    static Callback callBackDataComunities = new Callback() {
+        @Override
+        public void onOpen(@NonNull SupportSQLiteDatabase db) {
+            super.onOpen(db);
+            (new ComunityAsyncTask(INSTANCE)).execute();
         }
     };
 
@@ -169,6 +196,64 @@ public abstract class UTADBBDD extends RoomDatabase {
             dataLesson.add(company);
             lessonDAO.deleteAll();
             lessonDAO.insertAll(dataLesson);
+            return null;
+        }
+    }
+
+    private static class TeacherAsyncTask extends AsyncTask<Void,Void,Void> {
+        public TeacherDAO teacherDAO;
+
+        public TeacherAsyncTask(UTADBBDD utadbbdd) {
+            teacherDAO = utadbbdd.teacherdao();
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            TeacherObject pedro = new TeacherObject("Pedro",R.drawable.pedro, "Camacho", "Computing expert");
+            TeacherObject jaime = new TeacherObject("Jaime", R.drawable.jaime, "La Torre","Database expert");
+            TeacherObject laura = new TeacherObject("Laura", R.drawable.laura, "Jaen", "OpenERP expert");
+            TeacherObject meritxell = new TeacherObject("Meritxell", R.drawable.meritxel,"Bretos", "Company expert");
+            TeacherObject david = new TeacherObject("David", R.drawable.david, "Jardon", "Adroid expert");
+            TeacherObject cristina = new TeacherObject("Cristina",R.drawable.cristina, "Espinosa", "English expert");
+            TeacherObject dani = new TeacherObject("Daniel", R.drawable.daniel_lopez, "Lopez", "TFG expert");
+            TeacherObject carlos = new TeacherObject("Carlos", R.drawable.carlos, "Jimenez", "IOS expert");
+            List<TeacherObject> data = new ArrayList<>();
+            data.add(pedro);
+            data.add(jaime);
+            data.add(meritxell);
+            data.add(david);
+            data.add(laura);
+            data.add(cristina);
+            data.add(dani);
+            data.add(carlos);
+            teacherDAO.deleteAll();
+            teacherDAO.insertAll(data);
+
+            return null;
+        }
+    }
+
+    private static class ComunityAsyncTask extends AsyncTask<Void,Void,Void> {
+        public ComunityDAO comunityDAO;
+
+        public ComunityAsyncTask(UTADBBDD utadbbdd) {
+            comunityDAO = utadbbdd.comunitydao();
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            ComunityObject cibersegurity = new ComunityObject("Cibersegurity",R.drawable.basedatos, "CiberSegurity Topic","CiberSegurity Community", "Daniel Lopez");
+            ComunityObject development = new ComunityObject("Development", R.drawable.android, "Development Topic", "Development Community", "Jaime La torre");
+            ComunityObject big_data = new ComunityObject("Big Data", R.drawable.fct, "Big Data Topic", "Big Data Community", "Pedro Camacho");
+            ComunityObject videogames = new ComunityObject("Videogames", R.drawable.computing, "VideoGames Topic", "VideoGames Community", "Jhonny");
+            List<ComunityObject> data = new ArrayList<>();
+            data.add(cibersegurity);
+            data.add(development);
+            data.add(big_data);
+            data.add(videogames);
+            comunityDAO.deleteAll();
+            comunityDAO.insertAll(data);
+
             return null;
         }
     }

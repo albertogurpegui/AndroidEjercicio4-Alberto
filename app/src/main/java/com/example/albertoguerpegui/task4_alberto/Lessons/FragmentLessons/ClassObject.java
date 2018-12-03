@@ -22,17 +22,6 @@ public class ClassObject implements Parcelable {
     @ColumnInfo(name = "textDescriptionClass")
     private String textDescriptionClass;
 
-
-    public String getTextDescriptionClass() {
-        return textDescriptionClass;
-    }
-
-    public void setTextDescriptionClass(String textDescriptionClass) {
-        this.textDescriptionClass = textDescriptionClass;
-    }
-
-
-
     public ClassObject(String nameclass, int imgclass, String course, String textDescriptionClass) {
         this.nameclass = nameclass;
         this.imgclass = imgclass;
@@ -41,6 +30,7 @@ public class ClassObject implements Parcelable {
     }
 
     public ClassObject(Parcel in) {
+        id = in.readInt();
         nameclass = in.readString();
         imgclass = in.readInt();
         course = in.readString();
@@ -104,5 +94,13 @@ public class ClassObject implements Parcelable {
 
     public void setCourse(String course) {
         this.course = course;
+    }
+
+    public String getTextDescriptionClass() {
+        return textDescriptionClass;
+    }
+
+    public void setTextDescriptionClass(String textDescriptionClass) {
+        this.textDescriptionClass = textDescriptionClass;
     }
 }

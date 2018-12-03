@@ -1,32 +1,62 @@
 package com.example.albertoguerpegui.task4_alberto;
 
+import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 import android.util.Log;
 
 import java.util.ArrayList;
 
-
+@Entity(tableName = "User")
 public class User implements Parcelable{
-
+    @PrimaryKey(autoGenerate = true)
+    @NonNull
+    @ColumnInfo(name = "id")
+    private int id;
+    @ColumnInfo(name = "email")
     private String email;
+    @ColumnInfo(name = "name")
     private String name;
+    @ColumnInfo(name = "surname")
     private String surname;
+    @ColumnInfo(name = "surname2")
     private String surname2;
+    @ColumnInfo(name = "age")
     private int age;
+    @ColumnInfo(name = "address")
     private String address;
+    @ColumnInfo(name = "postalcode")
     private String postalcode;
+    @ColumnInfo(name = "city")
     private String city;
+    @ColumnInfo(name = "phonetype")
     private String phonetype;
+    @ColumnInfo(name = "phone")
     private String phone;
+    @ColumnInfo(name = "url")
     private String url;
+    @ColumnInfo(name = "description")
     private String description;
+    @ColumnInfo(name = "gender")
     private String gender;
-    private ArrayList hobbies;
+    /*@ColumnInfo(name = "hobbies")
+    private ArrayList hobbies;*/
 
 
     public User() {
 
+    }
+
+    @NonNull
+    public int getId() {
+        return id;
+    }
+
+    public void setId(@NonNull int id) {
+        this.id = id;
     }
 
     public String getEmail() {
@@ -129,12 +159,12 @@ public class User implements Parcelable{
         this.gender = gender;
     }
 
-    public ArrayList getHobbies() { return hobbies; }
+    //public ArrayList getHobbies() { return hobbies; }
 
-    public void setHobbies(ArrayList<String> hobbies) {
+    /*public void setHobbies(ArrayList<String> hobbies) {
         this.hobbies = hobbies;
         Log.d("HBO", hobbies.toString());
-    }
+    }*/
 
     @Override
     public int describeContents() {
@@ -143,6 +173,7 @@ public class User implements Parcelable{
 
     @Override
     public void writeToParcel(Parcel out, int flags) {
+        out.writeInt(id);
         out.writeString(email);
         out.writeString(name);
         out.writeString(surname);
@@ -156,7 +187,7 @@ public class User implements Parcelable{
         out.writeString(url);
         out.writeString(description);
         out.writeString(gender);
-        out.writeList(hobbies);
+        //out.writeList(hobbies);
     }
     public static final Parcelable.Creator<User> CREATOR
             = new Parcelable.Creator<User>() {
@@ -170,7 +201,8 @@ public class User implements Parcelable{
     };
 
     private User(Parcel in) {
-        hobbies = new ArrayList<User>();
+        id = in.readInt();
+        //hobbies = new ArrayList<User>();
         email = in.readString();
         name = in.readString();
         surname = in.readString();
@@ -184,7 +216,7 @@ public class User implements Parcelable{
         url = in.readString();
         description = in.readString();
         gender = in.readString();
-        hobbies = in.readArrayList(User.class.getClassLoader());
+        //hobbies = in.readArrayList(User.class.getClassLoader());
     }
 }
 

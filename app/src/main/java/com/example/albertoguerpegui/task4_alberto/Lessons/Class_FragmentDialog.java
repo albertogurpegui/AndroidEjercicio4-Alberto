@@ -39,7 +39,7 @@ public class Class_FragmentDialog extends DialogFragment {
     public static Class_FragmentDialog newInstance(ClassObject classObject) {
         Class_FragmentDialog dialog = new Class_FragmentDialog();
         Bundle data = new Bundle();
-        //data.putParcelable(CLASS,classObject);
+        data.putParcelable(CLASS,classObject);
         dialog.setArguments(data);
         return dialog;
     }

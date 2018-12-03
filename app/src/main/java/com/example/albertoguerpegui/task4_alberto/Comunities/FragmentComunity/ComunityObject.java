@@ -1,53 +1,39 @@
 package com.example.albertoguerpegui.task4_alberto.Comunities.FragmentComunity;
 
+import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 
+@Entity(tableName = "Comunity")
 public class ComunityObject implements Parcelable {
+    @PrimaryKey(autoGenerate = true)
+    @NonNull
+    @ColumnInfo(name = "id")
+    private int id;
+    @ColumnInfo(name = "namecomunity")
     private String namecomunity;
+    @ColumnInfo(name = "imgcomunity")
     private int imgcomunity;
-
+    @ColumnInfo(name = "textDescriptionCommunity")
     private String textDescriptionCommunity;
+    @ColumnInfo(name = "topicCommunity")
     private String topicCommunity;
+    @ColumnInfo(name = "cordinator")
+    private String cordinator;
 
-    public String getCordinator() {
-        return cordinator;
-    }
-
-    public void setCordinator(String cordinator) {
+    public ComunityObject(String namecomunity, int imgcomunity, String textDescriptionCommunity, String topicCommunity, String cordinator) {
+        this.namecomunity = namecomunity;
+        this.imgcomunity = imgcomunity;
+        this.textDescriptionCommunity = textDescriptionCommunity;
+        this.topicCommunity = topicCommunity;
         this.cordinator = cordinator;
     }
 
-    private String cordinator;
-
-    public String getTopicCommunity() {
-        return topicCommunity;
-    }
-
-    public void setTopicCommunity(String topicCommunity) {
-        this.topicCommunity = topicCommunity;
-    }
-
-
-
-    public String getTextDescriptionCommunity() {
-        return textDescriptionCommunity;
-    }
-
-    public void setTextDescriptionCommunity(String textDescriptionCommunity) {
-        this.textDescriptionCommunity = textDescriptionCommunity;
-    }
-
-
-    public ComunityObject(String namecomunity, int imgcomunity, String topicCommunity, String textDescriptionCommunity, String coordinator) {
-        this.namecomunity = namecomunity;
-        this.imgcomunity = imgcomunity;
-        this.topicCommunity = topicCommunity;
-        this.textDescriptionCommunity = textDescriptionCommunity;
-        this.cordinator = coordinator;
-    }
-
     public ComunityObject(Parcel in) {
+        id = in.readInt();
         namecomunity = in.readString();
         imgcomunity = in.readInt();
         topicCommunity = in.readString();
@@ -57,6 +43,7 @@ public class ComunityObject implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id);
         dest.writeString(namecomunity);
         dest.writeInt(imgcomunity);
         dest.writeString(topicCommunity);
@@ -81,6 +68,15 @@ public class ComunityObject implements Parcelable {
         }
     };
 
+    @NonNull
+    public int getId() {
+        return id;
+    }
+
+    public void setId(@NonNull int id) {
+        this.id = id;
+    }
+
     public String getNamecomunity() {
         return namecomunity;
     }
@@ -93,7 +89,31 @@ public class ComunityObject implements Parcelable {
         return imgcomunity;
     }
 
-    public void setImgcomunity(int imgclass) {
+    public void setImgcomunity(int imgcomunity) {
         this.imgcomunity = imgcomunity;
+    }
+
+    public String getTextDescriptionCommunity() {
+        return textDescriptionCommunity;
+    }
+
+    public void setTextDescriptionCommunity(String textDescriptionCommunity) {
+        this.textDescriptionCommunity = textDescriptionCommunity;
+    }
+
+    public String getTopicCommunity() {
+        return topicCommunity;
+    }
+
+    public void setTopicCommunity(String topicCommunity) {
+        this.topicCommunity = topicCommunity;
+    }
+
+    public String getCordinator() {
+        return cordinator;
+    }
+
+    public void setCordinator(String cordinator) {
+        this.cordinator = cordinator;
     }
 }

@@ -3,11 +3,14 @@ package com.example.albertoguerpegui.task4_alberto.FormData;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 
+import com.example.albertoguerpegui.task4_alberto.Data.BBDD.UTADBBDD;
+import com.example.albertoguerpegui.task4_alberto.Data.DAO.UserDAO;
 import com.example.albertoguerpegui.task4_alberto.FormData.FragmentFormData.FormDataFrag1;
 import com.example.albertoguerpegui.task4_alberto.FormData.FragmentFormData.PersonalDataFrag2;
 import com.example.albertoguerpegui.task4_alberto.General_Course.General_Course;
@@ -63,8 +66,28 @@ public class FormsActivity extends FragmentActivity implements FormDataFrag1.OnF
     public void saveUserData(View view, User user) {
         User mUser;
         mUser = user;
+        (new UserAsyncTask(UTADBBDD.INSTANCE, mUser)).execute();
+
         Intent saveIntent = new Intent(this, General_Course.class);
         saveIntent.putExtra(Login.USER, mUser);
+        saveIntent.setFlags(saveIntent.FLAG_ACTIVITY_NEW_TASK | saveIntent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(saveIntent);
+    }
+
+    private static class UserAsyncTask extends AsyncTask<Void,Void,Void> {
+        public UserDAO userDAO;
+        private User user;
+
+        public UserAsyncTask(UTADBBDD utadbbdd, User user) {
+            userDAO = utadbbdd.userdao();
+            this.user = user;
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            userDAO.deleteAll();
+            userDAO.insertUser(user);
+            return null;
+        }
     }
 }
