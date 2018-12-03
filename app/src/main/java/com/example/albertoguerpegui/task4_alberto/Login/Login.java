@@ -47,8 +47,8 @@ public class Login extends AppCompatActivity {
             public void onChanged(@Nullable User user) {
                 if (user != null){
                     Intent saveIntent = new Intent(getApplicationContext(), General_Course.class);
-                    saveIntent.setFlags(saveIntent.FLAG_ACTIVITY_NEW_TASK | saveIntent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(saveIntent);
+                    finish();
                 }
             }
         });
