@@ -6,16 +6,16 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_clases"
-            android:title="@string/classes" />
+            android:title="@string/lessons" />
         <item
             android:id="@+id/nav_notificaciones"
             android:title="@string/notifications" />
         <item
             android:id="@+id/nav_notas"
-            android:title="@string/qualificatios" />
+            android:title="@string/marks" />
         <item
             android:id="@+id/nav_profesores"
-            android:title="@string/professors"
+            android:title="@string/teachers"
             />
         <item
             android:id="@+id/nav_comunidades"

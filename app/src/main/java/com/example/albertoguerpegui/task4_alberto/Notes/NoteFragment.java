@@ -53,8 +53,10 @@ public class NoteFragment extends Fragment {
         noteRepository.mAllNote.observe(this, new Observer<List<NoteObject>>() {
             @Override
             public void onChanged(@Nullable List<NoteObject> noteObjects) {
-                mAdapter = new NoteAdapter(noteObjects);
-                mRecyclerView.setAdapter(mAdapter);
+                if(noteObjects!=null){
+                    mAdapter = new NoteAdapter(noteObjects);
+                    mRecyclerView.setAdapter(mAdapter);
+                }
             }
         });
     }

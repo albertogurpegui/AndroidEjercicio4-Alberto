@@ -179,7 +179,7 @@ public class General_Course extends AppCompatActivity implements NavigationView.
         //iniciamos los fragments dependiendo del item selecionado
         switch (id) {
             case R.id.nav_clases:
-                setTitle("Classes");
+                setTitle("Lessons");
                 fragment = new ClassFragment();
                 break;
             case R.id.nav_notificaciones:
@@ -187,11 +187,11 @@ public class General_Course extends AppCompatActivity implements NavigationView.
                 fragment = new NotificationFragment();
                 break;
             case R.id.nav_notas:
-                setTitle("Qualifications");
+                setTitle("Marks");
                 fragment = new NoteFragment();
                 break;
             case R.id.nav_profesores:
-                setTitle("Professors");
+                setTitle("Teachers");
                 fragment = new TeacherFragment();
                 break;
             case R.id.nav_comunidades:

@@ -53,8 +53,10 @@ public class NotificationFragment extends Fragment {
         notificationRepository.mAllNotification.observe(this, new Observer<List<NotificationObject>>() {
             @Override
             public void onChanged(@Nullable List<NotificationObject> notificationObjects) {
-                mAdapter = new NotificationAdapter(notificationObjects);
-                mRecyclerView.setAdapter(mAdapter);
+                if (notificationObjects != null){
+                    mAdapter = new NotificationAdapter(notificationObjects);
+                    mRecyclerView.setAdapter(mAdapter);
+                }
             }
         });
     }

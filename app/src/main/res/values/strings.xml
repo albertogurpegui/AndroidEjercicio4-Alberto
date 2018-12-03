@@ -27,10 +27,10 @@
     <string name="description">Description</string>
     <string name="text">Short description</string>
     <string name="title_activity_main2">Main2Activity</string>
-    <string name="classes">Classes</string>
+    <string name="lessons">Lessons</string>
     <string name="notifications">Notifications</string>
-    <string name="qualificatios">Qualificatios</string>
-    <string name="professors">Professors</string>
+    <string name="marks">Marks</string>
+    <string name="teachers">Teachers</string>
     <string name="comunities">Communities</string>
     <string name="log_out">Log Out</string>
     <string name="textCourse">Course description</string>

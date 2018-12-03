@@ -25,7 +25,7 @@ import com.example.albertoguerpegui.task4_alberto.User;
 import java.util.ArrayList;
 import java.util.List;
 
-@Database(entities = {NotificationObject.class, NoteObject.class, ClassObject.class, TeacherObject.class, ComunityObject.class, User.class}, version = 6)
+@Database(entities = {NotificationObject.class, NoteObject.class, ClassObject.class, TeacherObject.class, ComunityObject.class, User.class}, version = 7)
 public abstract class UTADBBDD extends RoomDatabase {
 
     public abstract NotificationDAO notificationdao();
@@ -46,9 +46,9 @@ public abstract class UTADBBDD extends RoomDatabase {
                             // if no Migration object.
                             // Migration is not part of this practical.
                             .fallbackToDestructiveMigration()
+                            .addCallback(callBackDataLessons)
                             .addCallback(callBackDataNotification)
                             .addCallback(callBackDataNotes)
-                            .addCallback(callBackDataLessons)
                             .addCallback(callBackDataTeachers)
                             .addCallback(callBackDataComunities)
                             .build();
@@ -117,20 +117,19 @@ public abstract class UTADBBDD extends RoomDatabase {
             NotificationObject notificaciones8 = new NotificationObject("2018/10/21", "Pedro","Te has copiado en este ejercicio");
             NotificationObject notificaciones9 = new NotificationObject("2018/09/16", "Yony","No sirves para nada");
             NotificationObject notificaciones10 = new NotificationObject("2018/10/21", "Joaquin","Aprobaste");
-            List<NotificationObject> data = new ArrayList<>();
-            data.add(notificaciones1);
-            data.add(notificaciones2);
-            data.add(notificaciones3);
-            data.add(notificaciones4);
-            data.add(notificaciones5);
-            data.add(notificaciones6);
-            data.add(notificaciones7);
-            data.add(notificaciones8);
-            data.add(notificaciones9);
-            data.add(notificaciones10);
+            List<NotificationObject> dataNotification = new ArrayList<>();
+            dataNotification.add(notificaciones1);
+            dataNotification.add(notificaciones2);
+            dataNotification.add(notificaciones3);
+            dataNotification.add(notificaciones4);
+            dataNotification.add(notificaciones5);
+            dataNotification.add(notificaciones6);
+            dataNotification.add(notificaciones7);
+            dataNotification.add(notificaciones8);
+            dataNotification.add(notificaciones9);
+            dataNotification.add(notificaciones10);
             notificationDAO.deleteAll();
-            notificationDAO.insertAll(data);
-
+            notificationDAO.insertAll(dataNotification);
             return null;
         }
     }
@@ -161,7 +160,6 @@ public abstract class UTADBBDD extends RoomDatabase {
             dataNote.add(notes7);
             noteDAO.deleteAll();
             noteDAO.insertAll(dataNote);
-
             return null;
         }
     }
@@ -217,17 +215,17 @@ public abstract class UTADBBDD extends RoomDatabase {
             TeacherObject cristina = new TeacherObject("Cristina",R.drawable.cristina, "Espinosa", "English expert");
             TeacherObject dani = new TeacherObject("Daniel", R.drawable.daniel_lopez, "Lopez", "TFG expert");
             TeacherObject carlos = new TeacherObject("Carlos", R.drawable.carlos, "Jimenez", "IOS expert");
-            List<TeacherObject> data = new ArrayList<>();
-            data.add(pedro);
-            data.add(jaime);
-            data.add(meritxell);
-            data.add(david);
-            data.add(laura);
-            data.add(cristina);
-            data.add(dani);
-            data.add(carlos);
+            List<TeacherObject> dataTeacher = new ArrayList<>();
+            dataTeacher.add(pedro);
+            dataTeacher.add(jaime);
+            dataTeacher.add(meritxell);
+            dataTeacher.add(david);
+            dataTeacher.add(laura);
+            dataTeacher.add(cristina);
+            dataTeacher.add(dani);
+            dataTeacher.add(carlos);
             teacherDAO.deleteAll();
-            teacherDAO.insertAll(data);
+            teacherDAO.insertAll(dataTeacher);
 
             return null;
         }
@@ -246,14 +244,13 @@ public abstract class UTADBBDD extends RoomDatabase {
             ComunityObject development = new ComunityObject("Development", R.drawable.android, "Development Topic", "Development Community", "Jaime La torre");
             ComunityObject big_data = new ComunityObject("Big Data", R.drawable.fct, "Big Data Topic", "Big Data Community", "Pedro Camacho");
             ComunityObject videogames = new ComunityObject("Videogames", R.drawable.computing, "VideoGames Topic", "VideoGames Community", "Jhonny");
-            List<ComunityObject> data = new ArrayList<>();
-            data.add(cibersegurity);
-            data.add(development);
-            data.add(big_data);
-            data.add(videogames);
+            List<ComunityObject> dataComunity = new ArrayList<>();
+            dataComunity.add(cibersegurity);
+            dataComunity.add(development);
+            dataComunity.add(big_data);
+            dataComunity.add(videogames);
             comunityDAO.deleteAll();
-            comunityDAO.insertAll(data);
-
+            comunityDAO.insertAll(dataComunity);
             return null;
         }
     }
